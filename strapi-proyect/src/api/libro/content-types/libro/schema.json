@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "libros",
+  "info": {
+    "singularName": "libro",
+    "pluralName": "libros",
+    "displayName": "Libro"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Nombre": {
+      "type": "string"
+    },
+    "Autor": {
+      "type": "string"
+    },
+    "Edicion": {
+      "type": "integer"
+    },
+    "metadata": {
+      "type": "json"
+    }
+  }
+}
