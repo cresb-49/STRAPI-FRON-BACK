@@ -368,14 +368,15 @@ export interface ApiLibroLibro extends Schema.CollectionType {
     singularName: 'libro';
     pluralName: 'libros';
     displayName: 'Libro';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    Nombre: Attribute.String;
-    Autor: Attribute.String;
-    Edicion: Attribute.Integer;
+    Nombre: Attribute.String & Attribute.Required;
+    Autor: Attribute.String & Attribute.Required;
+    Edicion: Attribute.Integer & Attribute.Required;
     metadata: Attribute.JSON;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -388,6 +389,44 @@ export interface ApiLibroLibro extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::libro.libro',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiRecervaRecerva extends Schema.CollectionType {
+  collectionName: 'recervas';
+  info: {
+    singularName: 'recerva';
+    pluralName: 'recervas';
+    displayName: 'Recerva';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    libro: Attribute.Relation<
+      'api::recerva.recerva',
+      'oneToOne',
+      'api::libro.libro'
+    >;
+    finalizado: Attribute.Boolean;
+    f_salida: Attribute.DateTime & Attribute.Required;
+    f_ingreso: Attribute.DateTime & Attribute.Required;
+    user: Attribute.Relation<'api::recerva.recerva', 'oneToOne', 'admin::user'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::recerva.recerva',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::recerva.recerva',
       'oneToOne',
       'admin::user'
     > &
@@ -832,6 +871,7 @@ declare module '@strapi/types' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'api::libro.libro': ApiLibroLibro;
+      'api::recerva.recerva': ApiRecervaRecerva;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;

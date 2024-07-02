@@ -4,7 +4,8 @@
   "info": {
     "singularName": "libro",
     "pluralName": "libros",
-    "displayName": "Libro"
+    "displayName": "Libro",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -12,13 +13,16 @@
   "pluginOptions": {},
   "attributes": {
     "Nombre": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "Autor": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "Edicion": {
-      "type": "integer"
+      "type": "integer",
+      "required": true
     },
     "metadata": {
       "type": "json"
